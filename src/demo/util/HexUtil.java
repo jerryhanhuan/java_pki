@@ -23,7 +23,7 @@ public class HexUtil {
 	}
 
 
-	static String bcdhex_to_aschex(byte[] bcdhex) {
+	public static String bcdhex_to_aschex(byte[] bcdhex) {
 		byte[] aschex = { 0, 0 };
 		String res = "";
 		String tmp = "";
@@ -35,7 +35,7 @@ public class HexUtil {
 		}
 		return res;
 	}
-	static byte[] aschex_to_bcdhex(String aschex) {
+	public static byte[] aschex_to_bcdhex(String aschex) {
 		byte[] aschexByte = aschex.getBytes();
 		int j = 0;
 		if (aschexByte.length % 2 == 0) {
