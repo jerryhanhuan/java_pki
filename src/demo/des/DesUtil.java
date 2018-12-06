@@ -110,12 +110,12 @@ public class DesUtil {
 	 
 	 public static byte[] EncryptPasswd(byte[] key, byte[] password){
 		 byte []data = pkcs5_padding(password,paddingsize);
-		 return DES_encrypt(key,data);
+		 return TDES_encrypt(key,data);
 		 
 	 }
 	 
 	 public static byte[] DecryptPasswd(byte[] key,byte[] data){
-		 byte[] result = DES_decrypt(key,data);
+		 byte[] result = TDES_decrypt(key,data);
 		 return Trim_pkcs5(result,paddingsize);
 		 
 	 }
@@ -133,20 +133,7 @@ public class DesUtil {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
-			byte[] key={0x32,0x40,0x64,0x58,0x3E,0x75,0x4A,0x2F};
-			byte[] data={0x12,0x34,0x56,0x05,0x05,0x05,0x05,0x05};
-			System.out.println("key: "+HexUtil.bcdhex_to_aschex(key));
-			System.out.println("data: "+HexUtil.bcdhex_to_aschex(data));
-			byte[] result = null;
-			//加密
-			result = DES_encrypt(key,data);
-			System.out.println("result: "+HexUtil.bcdhex_to_aschex(result));
-			
-			//解密
-			byte[] result2 = null;
-			result2 = DES_decrypt(key,result);
-			System.out.println("result: "+HexUtil.bcdhex_to_aschex(result2));
-			
+			byte[] key={0x32,0x40,0x64,0x58,0x3E,0x75,0x4A,0x2F,0x2A,0x6B,0x31,0x68,0x16,0x7F,0x3E,0x34,0x31,0x42,0x70,0x7F,0x64,0x5C,0x2C,0x25};
 			
 			String passwd = "123456";
 			byte[] enc_passwd = EncryptPasswd(key,passwd.getBytes());
@@ -155,11 +142,8 @@ public class DesUtil {
 			byte[] passwd_1 = DecryptPasswd(key, enc_passwd);
 			System.out.println(new String(passwd_1));
 			
-			String keyHex = "324064583E754A2F11111111111111111234560505050505";
-			String dataHex= "121313131314313413412341234123412341234132435345345241324123412341234132412341341324132412341322";
-			byte[] a = TDES_encrypt(HexUtil.aschex_to_bcdhex(keyHex), HexUtil.aschex_to_bcdhex(dataHex));
-			System.out.println("a: "+HexUtil.bcdhex_to_aschex(a));
-			System.out.println("b:"+HexUtil.bcdhex_to_aschex(TDES_decrypt(HexUtil.aschex_to_bcdhex(keyHex), a)));
+			
+			
 			
 			
 			
